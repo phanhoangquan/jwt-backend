@@ -36,7 +36,7 @@
       </div>
       <div class="table-users container mt-5">
           <div class="mb-5"> 
-                    <h3>Create New User</h3>
+                    <h3>List User</h3>
           </div>
           <table class="table table-hover table-bordered">
             <thead>
@@ -54,7 +54,9 @@
                   <td><%= user.email %></td>
                   <td><%= user.username %></td>
                   <td>
-                      <button class="btn btn-warning">Edit</button>
+                      <form style="display: inline;" action="/update-user/<%=user.id%>" method="GET">
+                        <button class="btn btn-warning" type="submit">Edit</button>
+                      </form>
                       <form style="display: inline;" action="/delete-user/<%=user.id%>" method="POST">
                         <button class="btn btn-danger" type="submit">Delete</button>
                       </form>
