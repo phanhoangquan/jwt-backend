@@ -1,4 +1,4 @@
-import { createNewUser, getAllUsers } from '../services/userService';
+import { createNewUser, getAllUsers, deleteUserById } from '../services/userService';
 
 export const handleHomePage = (req, res) => {
    return res.render('home.ejs');
@@ -14,6 +14,11 @@ export const handleCreateUser = (req, res) => {
    const username = req.body.username;
    const password = req.body.password;
    createNewUser(email, username, password);
+   res.redirect('/user');
+};
 
-   return res.send('Create user successfully!');
+export const handleDeleteUser = async (req, res) => {
+   const userId = req.params.id;
+   await deleteUserById(userId);
+   res.redirect('/user');
 };
