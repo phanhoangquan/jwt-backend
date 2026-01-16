@@ -9,6 +9,7 @@ module.exports = (sequelize, DataTypes) => {
        */
       static associate(models) {
          // define association here
+         Project.belongsToMany(models.User, { through: models.Project_User, foreignKey: 'projectId' });
       }
    }
    //object relational mapping

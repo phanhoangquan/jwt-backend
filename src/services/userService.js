@@ -26,6 +26,25 @@ export const createNewUser = async (email, username, password) => {
 };
 
 export const getAllUsers = async () => {
+   //Test connection to database with relationships
+   let result = await db.User.findOne({
+      where: { id: 1 },
+      attributes: ['email', 'username'],
+      raw: true,
+      nest: true,
+      include: { model: db.Group },
+   });
+
+   let role = await db.Role.findAll({
+      include: { model: db.Group, where: { id: 1 } },
+      raw: true,
+      nest: true,
+   });
+
+   console.log(result);
+   console.log(role);
+
+   //
    let users = [];
    users = db.User.findAll();
    return users;
