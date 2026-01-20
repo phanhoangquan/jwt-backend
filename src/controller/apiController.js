@@ -4,3 +4,7 @@ export const handleTestApi = (req, res) => {
       data: 'test data',
    });
 };
+
+export const handleRegister = (req, res) => {
+   console.log('Register data:', req.body);
+};

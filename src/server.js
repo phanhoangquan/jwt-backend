@@ -1,8 +1,9 @@
 import express from 'express';
 import configViewEngine from './config/viewEngine';
 import initWebRoutes from './routes/web';
+import initApiRoutes from './routes/api';
 import bodyParser from 'body-parser';
-import cors from 'cors';
+import configCors from './config/cors.js';
 import 'dotenv/config';
 
 // import connection from './config/connectDB';
@@ -12,14 +13,8 @@ require('dotenv').config();
 const app = express();
 const PORT = process.env.PORT || 8080;
 
-// CORS config
-app.use(
-   cors({
-      origin: process.env.REACT_URL, // frontend
-      credentials: true, // dùng cookie / JWT
-   }),
-);
-
+//Config cors
+configCors(app);
 //Config view engine
 configViewEngine(app);
 
@@ -32,6 +27,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 //Init web routes
 initWebRoutes(app);
+initApiRoutes(app);
 
 app.listen(PORT, () => {
    console.log(`Server is running on port: http://localhost:${PORT}`);

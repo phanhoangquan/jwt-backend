@@ -19,10 +19,6 @@ const initWebRoutes = (app) => {
    router.get('/update-user/:id', handleUpdateUserPage);
    router.post('/user/update-user', handleUpdateUser);
 
-   //rest api
-
-   router.get('/api/test-api', handleTestApi);
-
    return app.use('/', router);
 };
 
