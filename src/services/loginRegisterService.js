@@ -4,12 +4,12 @@ import { Op } from 'sequelize';
 
 const salt = bcrypt.genSaltSync(10);
 
-const hashPassword = (userPassword) => {
+export const hashPassword = (userPassword) => {
    let hashPassword = bcrypt.hashSync(userPassword, salt);
    return hashPassword;
 };
 
-const checkEmail = async (email) => {
+export const checkEmail = async (email) => {
    // Check email exist if have in database
    let isExist = await db.User.findOne({ where: { email: email } });
    if (isExist) {
@@ -19,7 +19,7 @@ const checkEmail = async (email) => {
    }
 };
 
-const checkPhone = async (phone) => {
+export const checkPhone = async (phone) => {
    // Check Phone exist if have in database
    let isExist = await db.User.findOne({ where: { phone: phone } });
    if (isExist) {
