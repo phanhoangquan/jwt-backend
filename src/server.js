@@ -5,6 +5,7 @@ import initApiRoutes from './routes/api';
 import bodyParser from 'body-parser';
 import configCors from './config/cors.js';
 import 'dotenv/config';
+import { createJWT, verifyToken } from './middleware/JWTAction.js';
 
 // import connection from './config/connectDB';
 
@@ -24,6 +25,13 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 //Test the connection to the database
 // connection();
+
+//test JWT
+createJWT();
+let data = verifyToken(
+   'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiSG9hbmcgUXVhbiIsImFkZHJlc3MiOiJIYSBUaW5oIiwiaWF0IjoxNzcwMzkyODU1fQ.BiVWRWRgDrACamJ_59lAblETgiTCglPWUr5xjoOmZ24',
+);
+console.log(data);
 
 //Init web routes
 initWebRoutes(app);
